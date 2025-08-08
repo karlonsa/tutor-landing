@@ -478,7 +478,7 @@
                     </button>
                 </div>
                 <p class="mb-4">Получите бесплатный гайд "5 лайфхаков для ЕГЭ по информатике"!</p>
-                <form class="space-y-3">
+                <form id="exitForm" class="space-y-3">
                     <input type="email" placeholder="Ваш email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
                         Получить гайд
@@ -489,6 +489,37 @@
     </div>
 
     <script>
+
+        // изменения
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+    
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+    
+            // Сохраняем заявку в localStorage
+            const lead = {
+                name: name,
+                phone: phone,
+                email: email,
+                subject: subject,
+                date: new Date().toISOString(),
+                status: 'new'
+            };
+    
+            // Добавляем заявку в базу
+            let leads = JSON.parse(localStorage.getItem('leads')) || [];
+            lead.id = Date.now();
+            leads.push(lead);
+            localStorage.setItem('leads', JSON.stringify(leads));
+            
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+        // изменения конец
+
         // Sample data for reviews
         const reviews = [
             {
@@ -746,6 +777,33 @@
         
         // Остальной код инициализации...
     });
+
+
+    // изменения
+    document.getElementById('exitForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input[type="email"]').value;
+        
+        const lead = {
+            name: 'Запрос гайда',
+            phone: '',
+            email: email,
+            subject: 'Гайд "5 лайфхаков"',
+            date: new Date().toISOString(),
+            status: 'new'
+        };
+        
+        let leads = JSON.parse(localStorage.getItem('leads')) || [];
+        lead.id = Date.now();
+        leads.push(lead);
+        localStorage.setItem('leads', JSON.stringify(leads));
+        
+        alert('Гайд отправлен на вашу почту!');
+        this.reset();
+        document.getElementById('exitPopup').classList.add('hidden');
+    });
+    // изменения конец
+
 </script>
 </body>
 </html>
