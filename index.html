@@ -489,7 +489,19 @@
     </div>
 
     <script>
-
+        // DOM elements
+        const testimonialCarousel = document.getElementById('testimonialCarousel');
+        const prevReviewBtn = document.getElementById('prevReview');
+        const nextReviewBtn = document.getElementById('nextReview');
+        const countdownElement = document.getElementById('countdown');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const exitPopup = document.getElementById('exitPopup');
+        const closePopup = document.getElementById('closePopup');
+        const calculator = document.getElementById('lessonsCount');
+        const durationSelect = document.getElementById('lessonDuration');
+        const calculatedPrice = document.getElementById('calculatedPrice');
+        const contactForm = document.getElementById('contactForm');
+        
         // изменения
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -552,18 +564,8 @@
             }
         ];
 
-        // DOM elements
-        const testimonialCarousel = document.getElementById('testimonialCarousel');
-        const prevReviewBtn = document.getElementById('prevReview');
-        const nextReviewBtn = document.getElementById('nextReview');
-        const countdownElement = document.getElementById('countdown');
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        const exitPopup = document.getElementById('exitPopup');
-        const closePopup = document.getElementById('closePopup');
-        const calculator = document.getElementById('lessonsCount');
-        const durationSelect = document.getElementById('lessonDuration');
-        const calculatedPrice = document.getElementById('calculatedPrice');
-        const contactForm = document.getElementById('contactForm');
+
+
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
@@ -703,6 +705,11 @@
                 const phone = document.getElementById('phone').value;
                 const email = document.getElementById('email').value;
                 const subject = document.getElementById('subject').value;
+                
+                if (!name.trim() || !phone.trim()) {
+                    alert('Пожалуйста, заполните имя и телефон');
+                    return;
+                }
                 
                 // Получаем текущие заявки или создаем новый массив
                 let leads = JSON.parse(localStorage.getItem('leads'));
