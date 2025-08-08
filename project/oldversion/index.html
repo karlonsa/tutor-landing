@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профессиональный репетитор по математике и информатике | Подготовка к ЕГЭ и ОГЭ</title>
+    <meta name="description" content="Индивидуальная подготовка к ЕГЭ и ОГЭ по математике и информатике с результатом 90+ баллов. Опытный репетитор с авторской методикой.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #6b46c1 0%, #9f7aea 100%);
+        }
+        .testimonial-carousel {
+            scroll-snap-type: x mandatory;
+        }
+        .testimonial-slide {
+            scroll-snap-align: start;
+        }
+        .admin-panel {
+            display: none;
+        }
+        .admin-active .admin-panel {
+            display: block;
+        }
+        .admin-active .landing-page {
+            display: none;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .editor-content {
+            min-height: 200px;
+            border: 1px solid #d1d5db;
+            padding: 1rem;
+            border-radius: 0.375rem;
+        }
+    </style>
+</head>
+<body class="font-sans relative overflow-x-hidden">
+    <!-- Background elements -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50"></div>
+        <div class="absolute top-0 left-0 w-full h-full opacity-20">
+            <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-200 mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-1/3 right-20 w-64 h-64 rounded-full bg-purple-200 mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-20 left-1/3 w-64 h-64 rounded-full bg-pink-200 mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+    </div>
+    <!-- Admin toggle button (would be removed in production) -->
+    <button id="adminToggle" class="fixed bottom-4 right-4 bg-red-500 text-white p-3 rounded-full shadow-lg z-50">
+        <i class="fas fa-user-shield"></i>
+    </button>
+
+    <!-- Landing Page -->
+    <div class="landing-page">
+        <!-- Navigation -->
+        <nav class="bg-white shadow-md sticky top-0 z-40">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-square-root-alt text-blue-600 text-2xl mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">ЕГЭМастер</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#advantages" class="text-gray-700 hover:text-blue-600">Преимущества</a>
+                    <a href="#results" class="text-gray-700 hover:text-blue-600">Результаты</a>
+                    <a href="#reviews" class="text-gray-700 hover:text-blue-600">Отзывы</a>
+                    <a href="#faq" class="text-gray-700 hover:text-blue-600">Вопросы</a>
+                    <a href="#contacts" class="text-gray-700 hover:text-blue-600">Контакты</a>
+                </div>
+                <a href="#cta" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium transition duration-300">
+                    Бесплатный урок
+                </a>
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-16 md:py-24">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+                        Подготовка к ЕГЭ, ОГЭ и олимпиадам по математике и информатике с результатом 90+ баллов
+                    </h1>
+                    <p class="text-xl mb-8 opacity-90">
+                        Индивидуальные занятия с опытным репетитором: алгоритмы, программирование, теория вероятностей
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#cta" class="bg-yellow-400 hover:bg-yellow-500 text-gray-800 px-6 py-3 rounded-md font-bold text-center transition duration-300">
+                            Бесплатный пробный урок
+                        </a>
+                        <a href="#contacts" class="bg-white hover:bg-gray-100 text-blue-600 px-6 py-3 rounded-md font-bold text-center transition duration-300">
+                            <i class="fas fa-phone-alt mr-2"></i> Записаться
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Профессиональный репетитор" 
+                             class="rounded-lg shadow-xl w-full max-w-md border-4 border-white">
+                        <div class="absolute -bottom-4 -right-4 bg-white text-blue-600 p-3 rounded-lg shadow-md">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold">8+</div>
+                                <div class="text-sm">лет опыта</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problems Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Какие проблемы мы решаем?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-yellow-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                        <div class="text-purple-600 mb-4 text-4xl">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Не понимаете сложные темы?</h3>
+                        <p class="text-gray-600">Разбираем каждую тему до полного понимания, используя простые аналогии и примеры из жизни.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                        <div class="text-blue-600 mb-4 text-4xl">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Низкие баллы на пробных тестах?</h3>
+                        <p class="text-gray-600">Анализируем ошибки, работаем над слабыми местами и увеличиваем баллы на реальных экзаменах.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition duration-300">
+                        <div class="text-blue-600 mb-4 text-4xl">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Страх перед экзаменом?</h3>
+                        <p class="text-gray-600">Психологическая подготовка и пробные экзамены помогут чувствовать себя уверенно.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section id="advantages" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Почему выбирают нас?</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-lg font-medium text-gray-800">Авторские методики</p>
+                                <p class="text-gray-600">Разработанные на основе многолетнего опыта преподавания и анализа экзаменационных заданий.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-lg font-medium text-gray-800">Гибкий график</p>
+                                <p class="text-gray-600">Занятия в удобное для вас время, включая выходные и вечерние часы.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-lg font-medium text-gray-800">Разбор реальных заданий ЕГЭ</p>
+                                <p class="text-gray-600">Акцент на заданиях, которые действительно встречаются на экзаменах.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-lg font-medium text-gray-800">Онлайн/офлайн формат</p>
+                                <p class="text-gray-600">Занимайтесь из дома или приходите в комфортный офис в центре города.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                    <i class="fas fa-check text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-lg font-medium text-gray-800">Персональный подход</p>
+                                <p class="text-gray-600">Программа обучения адаптируется под ваши цели и уровень подготовки.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Наши результаты</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-4">Средний балл наших учеников</h3>
+                            <div class="bg-blue-50 p-6 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">Математика</span>
+                                    <span class="font-bold text-blue-600">89 баллов</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-4">
+                                    <div class="bg-blue-600 h-4 rounded-full" style="width: 89%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Информатика</h3>
+                            <div class="bg-blue-50 p-6 rounded-lg">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-medium">Информатика</span>
+                                    <span class="font-bold text-blue-600">92 балла</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-4">
+                                    <div class="bg-blue-600 h-4 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gray-50 p-4 rounded-lg text-center">
+                                <div class="text-4xl font-bold text-blue-600 mb-2">100%</div>
+                                <div class="text-gray-700">поступление в вузы</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg text-center">
+                                <div class="text-4xl font-bold text-blue-600 mb-2">24+</div>
+                                <div class="text-gray-700">ученика с 90+ баллами</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg text-center">
+                                <div class="text-4xl font-bold text-blue-600 mb-2">5</div>
+                                <div class="text-gray-700">победителей олимпиад</div>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg text-center">
+                                <div class="text-4xl font-bold text-blue-600 mb-2">8+</div>
+                                <div class="text-gray-700">лет успешной работы</div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h3 class="text-xl font-semibold mb-4">Наши сертификаты</h3>
+                            <div class="flex space-x-4 overflow-x-auto pb-4">
+                                <img src="https://via.placeholder.com/150x200" alt="Сертификат" class="h-40 rounded border">
+                                <img src="https://via.placeholder.com/150x200" alt="Сертификат" class="h-40 rounded border">
+                                <img src="https://via.placeholder.com/150x200" alt="Сертификат" class="h-40 rounded border">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Отзывы наших учеников</h2>
+                <div class="relative">
+                    <div class="testimonial-carousel flex overflow-x-auto pb-8 scrollbar-hide space-x-4" id="testimonialCarousel">
+                        <!-- Reviews will be loaded here dynamically -->
+                    </div>
+                    <button class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 bg-white rounded-full shadow-md p-2 text-blue-600 hover:bg-blue-50" id="prevReview">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 bg-white rounded-full shadow-md p-2 text-blue-600 hover:bg-blue-50" id="nextReview">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA with Timer Section -->
+        <section id="cta" class="py-16 bg-purple-600 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-6">Оставьте заявку в течение <span id="countdown" class="bg-white text-blue-600 px-2 py-1 rounded">24:00:00</span> и получите скидку 20% на первый месяц!</h2>
+                <p class="text-xl mb-8 opacity-90">Первый пробный урок - бесплатно и без обязательств</p>
+                <div class="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Записаться на занятие</h3>
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <input type="text" id="name" placeholder="Ваше имя" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                            </div>
+                            <div>
+                                <input type="tel" id="phone" placeholder="Телефон" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                            </div>
+                            <div>
+                                <input type="email" id="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                            </div>
+                            <div>
+                                <select id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800">
+                                    <option value="">Выберите предмет</option>
+                                    <option value="math">Математика</option>
+                                    <option value="informatics">Информатика</option>
+                                    <option value="both">Оба предмета</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-md transition duration-300">
+                                Получить скидку
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Частые вопросы</h2>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 font-medium flex justify-between items-center">
+                            <span>Как проходят занятия?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 bg-white hidden">
+                            <p>Занятия проходят индивидуально в удобном для вас формате: онлайн через Zoom/Skype или офлайн в нашем учебном центре. Каждое занятие длится 60-90 минут и включает разбор теории, решение практических задач и анализ ошибок.</p>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 font-medium flex justify-between items-center">
+                            <span>Какие материалы используются?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 bg-white hidden">
+                            <p>Мы используем авторские методические материалы, официальные сборники ФИПИ, задачи прошлых лет и дополнительные материалы для углубленного изучения сложных тем. Все материалы предоставляются бесплатно в электронном виде.</p>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 font-medium flex justify-between items-center">
+                            <span>Какова стоимость занятий?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 bg-white hidden">
+                            <p>Стоимость зависит от продолжительности курса и формата занятий. Средняя цена одного занятия (60 минут) - 1500 рублей. При оплате за месяц предоставляется скидка 10%. Первый пробный урок проводится бесплатно.</p>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-question w-full text-left p-4 bg-gray-50 hover:bg-gray-100 font-medium flex justify-between items-center">
+                            <span>Можно ли перенести или отменить занятие?</span>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-answer p-4 bg-white hidden">
+                            <p>Да, вы можете перенести или отменить занятие, предупредив не менее чем за 24 часа. В этом случае оплата не взимается. При отмене позднее этого срока занятие считается проведенным и подлежит оплате.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Рассчитайте стоимость курса</h2>
+                <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
+                    <div class="mb-6">
+                        <label for="lessonsCount" class="block text-gray-700 font-medium mb-2">Количество занятий в месяц:</label>
+                        <input type="range" id="lessonsCount" min="4" max="16" step="2" value="8" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between mt-2">
+                            <span>4</span>
+                            <span>8</span>
+                            <span>12</span>
+                            <span>16</span>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="lessonDuration" class="block text-gray-700 font-medium mb-2">Длительность занятия:</label>
+                        <select id="lessonDuration" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="60">60 минут (1500 руб.)</option>
+                            <option value="90">90 минут (2100 руб.)</option>
+                            <option value="120">120 минут (2700 руб.)</option>
+                        </select>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg text-center">
+                        <div class="text-sm text-gray-600">Примерная стоимость</div>
+                        <div class="text-3xl font-bold text-purple-600" id="calculatedPrice">12 000 руб.</div>
+                        <div class="text-sm text-gray-600 mt-1">При оплате за месяц скидка 10%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts Section -->
+        <section id="contacts" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Контакты</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Телефон</h3>
+                                    <a href="tel:+79991234567" class="text-blue-600 hover:underline">+7 (999) 123-45-67</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Email</h3>
+                                    <a href="mailto:info@egemaster.ru" class="text-blue-600 hover:underline">info@egemaster.ru</a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Адрес</h3>
+                                    <p>г. Москва, ул. Образцова, д. 12, офис 34</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h3 class="font-bold text-lg mb-4">Мы в мессенджерах</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                </a>
+                                <a href="#" class="bg-blue-400 hover:bg-blue-500 text-white p-3 rounded-full">
+                                    <i class="fab fa-telegram-plane text-xl"></i>
+                                </a>
+                                <a href="#" class="bg-gray-800 hover:bg-gray-900 text-white p-3 rounded-full">
+                                    <i class="fab fa-vk text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="h-64 md:h-full bg-gray-200 rounded-lg overflow-hidden">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373789135729!2d37.61531071582975!3d55.75202398055315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a45d5b1f36f%3A0x6c1c8f1a3b0e0b1b!2z0J7QsdGA0LDQt9C-0LLQsNGC0LXQu9GM!5e0!3m2!1sru!2sru!4v1620000000000!5m2!1sru!2sru" 
+                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <div class="flex items-center">
+                            <i class="fas fa-square-root-alt text-blue-400 text-2xl mr-2"></i>
+                            <span class="text-xl font-bold">ЕГЭМастер</span>
+                        </div>
+                        <p class="text-gray-400 mt-2">Подготовка к ЕГЭ и ОГЭ по математике и информатике</p>
+                    </div>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+                    <p>© 2023 ЕГЭМастер. Все права защищены.</p>
+                    <p class="mt-2"><a href="#" class="hover:text-white">Политика конфиденциальности</a> | <a href="#" class="hover:text-white">Договор-оферта</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Exit Intent Popup -->
+        <!--<div id="exitPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 fade-in">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-gray-800">Уходите?</h3>
+                        <button id="closePopup" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <p class="mb-4">Получите бесплатный гайд "5 лайфхаков для ЕГЭ по информатике"!</p>
+                    <form class="space-y-3">
+                        <input type="email" placeholder="Ваш email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                            Получить гайд
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>-->
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel bg-gray-100 min-h-screen">
+        <div class="bg-gray-800 text-white p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-user-shield text-xl mr-2"></i>
+                    <span class="text-xl font-bold">Админ-панель ЕГЭМастер</span>
+                </div>
+                <button id="logout" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md">
+                    Выйти
+                </button>
+            </div>
+        </div>
+
+        <div class="container mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Sidebar -->
+                <div class="md:col-span-1 bg-white rounded-lg shadow-md p-4">
+                    <nav>
+                        <ul class="space-y-2">
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md bg-blue-100 text-blue-700 font-medium" data-tab="reviews">
+                                    <i class="fas fa-comments mr-2"></i> Управление отзывами
+                                </button>
+                            </li>
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md hover:bg-gray-100" data-tab="content">
+                                    <i class="fas fa-edit mr-2"></i> Редактирование контента
+                                </button>
+                            </li>
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md hover:bg-gray-100" data-tab="applications">
+                                    <i class="fas fa-envelope mr-2"></i> Заявки от клиентов
+                                </button>
+                            </li>
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md hover:bg-gray-100" data-tab="settings">
+                                    <i class="fas fa-cog mr-2"></i> Настройки сайта
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Main Content -->
+                <div class="md:col-span-3 space-y-6">
+                    <!-- Reviews Management -->
+                    <div class="admin-tab-content bg-white rounded-lg shadow-md p-6" id="reviewsTab">
+                        <h2 class="text-2xl font-bold mb-6">Управление отзывами</h2>
+                        
+                        <!-- Add Review Form -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-4">Добавить новый отзыв</h3>
+                            <form id="addReviewForm" class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Имя ученика</label>
+                                    <input type="text" id="studentName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Дата отзыва</label>
+                                    <input type="date" id="reviewDate" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Текст отзыва</label>
+                                    <textarea id="reviewText" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Фото отзыва (скриншот)</label>
+                                    <div class="border-2 border-dashed border-gray-300 rounded-md p-4 text-center">
+                                        <input type="file" id="reviewImage" class="hidden" accept="image/*">
+                                        <label for="reviewImage" class="cursor-pointer">
+                                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                                            <p class="text-gray-500">Перетащите файл сюда или кликните для выбора</p>
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md transition duration-300">
+                                    Добавить отзыв
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Existing Reviews -->
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Существующие отзывы</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="reviewsGrid">
+                                <!-- Reviews will be loaded here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Management -->
+                    <div class="admin-tab-content bg-white rounded-lg shadow-md p-6 hidden" id="contentTab">
+                        <h2 class="text-2xl font-bold mb-6">Редактирование контента</h2>
+                        
+                        <div class="space-y-8">
+                            <!-- Hero Section -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4">Главный заголовок</h3>
+                                <div class="editor-content" id="heroTitle" contenteditable="true">
+                                    Подготовка к ЕГЭ, ОГЭ и олимпиадам по математике и информатике с результатом 90+ баллов
+                                </div>
+                                <div class="mt-2">
+                                    <button class="save-content-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300" data-section="heroTitle">
+                                        Сохранить
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Advantages -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4">Преимущества</h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-start">
+                                        <div class="flex-shrink-0 mt-1">
+                                            <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                                <i class="fas fa-check text-sm"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-3 flex-grow">
+                                            <div class="editor-content" id="advantage1" contenteditable="true">
+                                                Авторские методики, разработанные на основе многолетнего опыта преподавания и анализа экзаменационных заданий.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="flex-shrink-0 mt-1">
+                                            <div class="h-6 w-6 rounded-full bg-green-500 flex items-center justify-center text-white">
+                                                <i class="fas fa-check text-sm"></i>
+                                            </div>
+                                        </div>
+                                        <div class="ml-3 flex-grow">
+                                            <div class="editor-content" id="advantage2" contenteditable="true">
+                                                Гибкий график занятий в удобное для вас время, включая выходные и вечерние часы.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- More advantages... -->
+                                </div>
+                                <div class="mt-4">
+                                    <button class="save-content-btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300" data-section="advantages">
+                                        Сохранить все преимущества
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- FAQ -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4">Частые вопросы</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-gray-700 mb-1">Вопрос</label>
+                                        <input type="text" value="Как проходят занятия?" class="w-full px-4 py-2 border border-gray-300 rounded-md mb-2">
+                                        <label class="block text-gray-700 mb-1">Ответ</label>
+                                        <div class="editor-content" contenteditable="true">
+                                            Занятия проходят индивидуально в удобном для вас формате: онлайн через Zoom/Skype или офлайн в нашем учебном центре. Каждое занятие длится 60-90 минут и включает разбор теории, решение практических задач и анализ ошибок.
+                                        </div>
+                                    </div>
+                                    <!-- More FAQ items... -->
+                                </div>
+                                <div class="mt-4">
+                                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                                        Сохранить FAQ
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Upload Documents -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4">Загрузка документов</h3>
+                                <div class="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
+                                    <input type="file" id="documentUpload" class="hidden" accept="image/*,.pdf">
+                                    <label for="documentUpload" class="cursor-pointer">
+                                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                                        <p class="text-gray-500 mb-2">Перетащите файлы сюда или кликните для выбора</p>
+                                        <p class="text-sm text-gray-400">Поддерживаемые форматы: JPG, PNG, PDF (макс. 5MB)</p>
+                                    </label>
+                                </div>
+                                <div class="mt-4">
+                                    <h4 class="font-medium mb-2">Загруженные документы</h4>
+                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                        <div class="border rounded-md p-2 flex items-center">
+                                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                                            <span class="truncate">Сертификат_ЕГЭ.pdf</span>
+                                            <button class="ml-auto text-red-500 hover:text-red-700">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                        <!-- More documents... -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Applications Management -->
+                    <div class="admin-tab-content bg-white rounded-lg shadow-md p-6 hidden" id="applicationsTab">
+                        <h2 class="text-2xl font-bold mb-6">Заявки от клиентов</h2>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="py-3 px-4 text-left">Дата</th>
+                                        <th class="py-3 px-4 text-left">Имя</th>
+                                        <th class="py-3 px-4 text-left">Телефон</th>
+                                        <th class="py-3 px-4 text-left">Email</th>
+                                        <th class="py-3 px-4 text-left">Предмет</th>
+                                        <th class="py-3 px-4 text-left">Статус</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="applicationsTable">
+                                    <!-- Applications will be loaded here dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-sm text-gray-600">Показано <span id="shownApplications">5</span> из <span id="totalApplications">12</span></span>
+                            </div>
+                            <div>
+                                <button id="exportCSV" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                                    <i class="fas fa-file-csv mr-2"></i> Экспорт в CSV
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div class="admin-tab-content bg-white rounded-lg shadow-md p-6 hidden" id="settingsTab">
+                        <h2 class="text-2xl font-bold mb-6">Настройки сайта</h2>
+                        
+                        <div class="space-y-6">
+                            <!-- Admin Credentials -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4">Изменение учетных данных</h3>
+                                <form class="space-y-4">
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Текущий пароль</label>
+                                        <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Новый пароль</label>
+                                        <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 mb-2">Подтвердите новый пароль</label>
+                                        <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                                        Изменить пароль
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Color Scheme -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4">Цветовая схема</h3>
+                                <div class="flex space-x-4">
+                                    <div class="color-option border-2 border-transparent hover:border-blue-500 rounded-md p-1 cursor-pointer" data-color="blue">
+                                        <div class="w-16 h-16 rounded bg-blue-600"></div>
+                                        <p class="text-center mt-1 text-sm">Синяя</p>
+                                    </div>
+                                    <div class="color-option border-2 border-transparent hover:border-blue-500 rounded-md p-1 cursor-pointer" data-color="green">
+                                        <div class="w-16 h-16 rounded bg-green-600"></div>
+                                        <p class="text-center mt-1 text-sm">Зеленая</p>
+                                    </div>
+                                    <div class="color-option border-2 border-transparent hover:border-blue-500 rounded-md p-1 cursor-pointer" data-color="purple">
+                                        <div class="w-16 h-16 rounded bg-purple-600"></div>
+                                        <p class="text-center mt-1 text-sm">Фиолетовая</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analytics -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4">Аналитика</h3>
+                                <div class="bg-gray-50 p-4 rounded-md">
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                                        <div class="bg-white p-3 rounded-md shadow-sm text-center">
+                                            <div class="text-2xl font-bold text-blue-600">1,248</div>
+                                            <div class="text-sm text-gray-600">Посетителей</div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-md shadow-sm text-center">
+                                            <div class="text-2xl font-bold text-blue-600">87</div>
+                                            <div class="text-sm text-gray-600">Заявок</div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-md shadow-sm text-center">
+                                            <div class="text-2xl font-bold text-blue-600">7%</div>
+                                            <div class="text-sm text-gray-600">Конверсия</div>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-md shadow-sm text-center">
+                                            <div class="text-2xl font-bold text-blue-600">2.5</div>
+                                            <div class="text-sm text-gray-600">мин. на сайте</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-4">
+                                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                                            <i class="fas fa-sync-alt mr-2"></i> Обновить данные
+                                        </button>
+                                        <button class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                                            <i class="fas fa-cog mr-2"></i> Настройки аналитики
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for reviews
+        const reviews = [
+            {
+                id: 1,
+                name: "Александр Петров",
+                date: "15.05.2023",
+                text: "Благодаря занятиям сдал ЕГЭ по информатике на 94 балла! Очень понятное объяснение сложных тем.",
+                image: "https://via.placeholder.com/300x200"
+            },
+            {
+                id: 2,
+                name: "Екатерина Смирнова",
+                date: "22.04.2023",
+                text: "Математика всегда была сложным предметом, но после курса разобралась даже в самых сложных темах. Результат - 87 баллов!",
+                image: "https://via.placeholder.com/300x200"
+            },
+            {
+                id: 3,
+                name: "Дмитрий Иванов",
+                date: "10.03.2023",
+                text: "Отличный преподаватель! Готовился к олимпиаде по программированию - занял призовое место в регионе.",
+                image: "https://via.placeholder.com/300x200"
+            },
+            {
+                id: 4,
+                name: "Ольга Васильева",
+                date: "28.02.2023",
+                text: "Ребенок занимался весь год, с нуля подтянул математику до твердой четверки в школе и хорошо написал ОГЭ.",
+                image: "https://via.placeholder.com/300x200"
+            }
+        ];
+
+        // Sample data for applications
+        const applications = [
+            { id: 1, date: "12.06.2023", name: "Иван Сидоров", phone: "+7 (912) 345-67-89", email: "ivan@mail.com", subject: "Математика", status: "Новая" },
+            { id: 2, date: "10.06.2023", name: "Мария Кузнецова", phone: "+7 (923) 456-78-90", email: "maria@mail.com", subject: "Информатика", status: "Обработана" },
+            { id: 3, date: "08.06.2023", name: "Сергей Павлов", phone: "+7 (934) 567-89-01", email: "sergey@mail.com", subject: "Оба предмета", status: "Новая" },
+            { id: 4, date: "05.06.2023", name: "Анна Воробьева", phone: "+7 (945) 678-90-12", email: "anna@mail.com", subject: "Математика", status: "В работе" },
+            { id: 5, date: "01.06.2023", name: "Алексей Соколов", phone: "+7 (956) 789-01-23", email: "alex@mail.com", subject: "Информатика", status: "Завершена" }
+        ];
+
+        // DOM elements
+        const adminToggle = document.getElementById('adminToggle');
+        const landingPage = document.querySelector('.landing-page');
+        const adminPanel = document.querySelector('.admin-panel');
+        const testimonialCarousel = document.getElementById('testimonialCarousel');
+        const prevReviewBtn = document.getElementById('prevReview');
+        const nextReviewBtn = document.getElementById('nextReview');
+        const countdownElement = document.getElementById('countdown');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const exitPopup = document.getElementById('exitPopup');
+        const closePopup = document.getElementById('closePopup');
+        const logoutBtn = document.getElementById('logout');
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const adminTabContents = document.querySelectorAll('.admin-tab-content');
+        const reviewsGrid = document.getElementById('reviewsGrid');
+        const applicationsTable = document.getElementById('applicationsTable');
+        const exportCSVBtn = document.getElementById('exportCSV');
+        const calculator = document.getElementById('lessonsCount');
+        const durationSelect = document.getElementById('lessonDuration');
+        const calculatedPrice = document.getElementById('calculatedPrice');
+        const contactForm = document.getElementById('contactForm');
+        const addReviewForm = document.getElementById('addReviewForm');
+        const colorOptions = document.querySelectorAll('.color-option');
+        const saveContentBtns = document.querySelectorAll('.save-content-btn');
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load reviews to landing page
+            loadReviewsToCarousel();
+            
+            // Load reviews to admin panel
+            loadReviewsToAdmin();
+            
+            // Load applications to admin panel
+            loadApplicationsToAdmin();
+            
+            // Initialize countdown timer
+            initializeCountdown();
+            
+            // Initialize calculator
+            initializeCalculator();
+            
+            // Initialize FAQ accordion
+            initializeFAQ();
+            
+            // Initialize exit intent popup
+            initializeExitPopup();
+            
+            // Initialize admin panel tabs
+            initializeAdminTabs();
+            
+            // Initialize color scheme options
+            initializeColorOptions();
+            
+            // Initialize content editing
+            initializeContentEditing();
+        });
+
+        // Toggle admin panel
+        adminToggle.addEventListener('click', function() {
+            document.body.classList.toggle('admin-active');
+        });
+
+        // Logout from admin panel
+        logoutBtn.addEventListener('click', function() {
+            document.body.classList.remove('admin-active');
+        });
+
+        // Load reviews to carousel
+        function loadReviewsToCarousel() {
+            testimonialCarousel.innerHTML = '';
+            
+            reviews.forEach(review => {
+                const slide = document.createElement('div');
+                slide.className = 'testimonial-slide flex-shrink-0 w-4/5 md:w-1/3 px-4';
+                slide.innerHTML = `
+                    <div class="bg-white p-6 rounded-lg shadow-md h-full">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-user text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">${review.name}</h4>
+                                <p class="text-gray-500 text-sm">${review.date}</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-4">"${review.text}"</p>
+                        <img src="${review.image}" alt="Отзыв ${review.name}" class="w-full h-32 object-cover rounded">
+                    </div>
+                `;
+                testimonialCarousel.appendChild(slide);
+            });
+        }
+
+        // Load reviews to admin panel
+        function loadReviewsToAdmin() {
+            reviewsGrid.innerHTML = '';
+            
+            reviews.forEach(review => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'border rounded-lg overflow-hidden bg-white';
+                reviewCard.innerHTML = `
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h4 class="font-bold">${review.name}</h4>
+                                <p class="text-gray-500 text-sm">${review.date}</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="edit-review text-blue-600 hover:text-blue-800" data-id="${review.id}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="delete-review text-red-600 hover:text-red-800" data-id="${review.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-3">${review.text}</p>
+                        <img src="${review.image}" alt="Отзыв ${review.name}" class="w-full h-24 object-cover rounded">
+                    </div>
+                `;
+                reviewsGrid.appendChild(reviewCard);
+            });
+        }
+
+        // Load applications to admin panel
+        function loadApplicationsToAdmin() {
+            applicationsTable.innerHTML = '';
+            
+            applications.forEach(app => {
+                const row = document.createElement('tr');
+                row.className = 'border-b';
+                row.innerHTML = `
+                    <td class="py-3 px-4">${app.date}</td>
+                    <td class="py-3 px-4">${app.name}</td>
+                    <td class="py-3 px-4">${app.phone}</td>
+                    <td class="py-3 px-4">${app.email}</td>
+                    <td class="py-3 px-4">${app.subject}</td>
+                    <td class="py-3 px-4">
+                        <span class="inline-block px-2 py-1 text-xs rounded ${
+                            app.status === 'Новая' ? 'bg-blue-100 text-blue-800' : 
+                            app.status === 'Обработана' ? 'bg-green-100 text-green-800' :
+                            app.status === 'В работе' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'
+                        }">${app.status}</span>
+                    </td>
+                `;
+                applicationsTable.appendChild(row);
+            });
+            
+            document.getElementById('shownApplications').textContent = applications.length;
+            document.getElementById('totalApplications').textContent = applications.length;
+        }
+
+        // Initialize countdown timer
+        function initializeCountdown() {
+            let hours = 24;
+            let minutes = 0;
+            let seconds = 0;
+            
+            const timer = setInterval(() => {
+                seconds--;
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                }
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                }
+                if (hours < 0) {
+                    clearInterval(timer);
+                    countdownElement.textContent = "00:00:00";
+                    return;
+                }
+                
+                const displayHours = hours.toString().padStart(2, '0');
+                const displayMinutes = minutes.toString().padStart(2, '0');
+                const displaySeconds = seconds.toString().padStart(2, '0');
+                
+                countdownElement.textContent = `${displayHours}:${displayMinutes}:${displaySeconds}`;
+            }, 1000);
+        }
+
+        // Initialize calculator
+        function initializeCalculator() {
+            function calculatePrice() {
+                const lessons = parseInt(calculator.value);
+                const duration = parseInt(durationSelect.value);
+                let pricePerLesson;
+                
+                if (duration === 60) pricePerLesson = 1500;
+                else if (duration === 90) pricePerLesson = 2100;
+                else pricePerLesson = 2700;
+                
+                const total = lessons * pricePerLesson;
+                const discount = total * 0.1;
+                const finalPrice = total - discount;
+                
+                calculatedPrice.textContent = `${finalPrice.toLocaleString('ru-RU')} руб.`;
+            }
+            
+            calculator.addEventListener('input', calculatePrice);
+            durationSelect.addEventListener('change', calculatePrice);
+            
+            // Initial calculation
+            calculatePrice();
+        }
+
+        // Initialize FAQ accordion
+        function initializeFAQ() {
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    answer.classList.toggle('hidden');
+                    icon.classList.toggle('transform');
+                    icon.classList.toggle('rotate-180');
+                });
+            });
+        }
+
+        // Initialize exit intent popup
+        function initializeExitPopup() {
+            let mouseY;
+            
+            document.addEventListener('mouseout', function(e) {
+                mouseY = e.clientY;
+                if (mouseY < 50) {
+                    exitPopup.classList.remove('hidden');
+                }
+            });
+            
+            closePopup.addEventListener('click', function() {
+                exitPopup.classList.add('hidden');
+            });
+        }
+
+        // Initialize admin panel tabs
+        function initializeAdminTabs() {
+            adminTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    adminTabs.forEach(t => t.classList.remove('bg-blue-100', 'text-blue-700'));
+                    // Add active class to current tab
+                    this.classList.add('bg-blue-100', 'text-blue-700');
+                    
+                    // Hide all tab contents
+                    adminTabContents.forEach(content => content.classList.add('hidden'));
+                    // Show current tab content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}Tab`).classList.remove('hidden');
+                });
+            });
+        }
+
+        // Initialize color scheme options
+        function initializeColorOptions() {
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const color = this.getAttribute('data-color');
+                    alert(`Цветовая схема изменена на ${color}. В реальном приложении это изменило бы переменные Tailwind CSS.`);
+                });
+            });
+        }
+
+        // Initialize content editing
+        function initializeContentEditing() {
+            saveContentBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    alert(`Содержание раздела "${section}" сохранено. В реальном приложении это отправило бы данные на сервер.`);
+                });
+            });
+        }
+
+        // Contact form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Add review form submission
+        addReviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Отзыв добавлен. В реальном приложении это отправило бы данные на сервер и обновило интерфейс.');
+            this.reset();
+        });
+
+        // Export to CSV
+        exportCSVBtn.addEventListener('click', function() {
+            alert('Данные экспортированы в CSV файл. В реальном приложении это сгенерировало бы и скачало файл.');
+        });
+
+        // Carousel navigation
+        let currentSlide = 0;
+        
+        nextReviewBtn.addEventListener('click', function() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            currentSlide = (currentSlide + 1) % slides.length;
+            testimonialCarousel.scrollTo({
+                left: slides[currentSlide].offsetLeft,
+                behavior: 'smooth'
+            });
+        });
+        
+        prevReviewBtn.addEventListener('click', function() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            testimonialCarousel.scrollTo({
+                left: slides[currentSlide].offsetLeft,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

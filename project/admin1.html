@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель | Репетитор по математике и информатике</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // Инициализация базы данных при первом запуске
+        function initDatabase() {
+            if (!localStorage.getItem('adminCredentials')) {
+                // Хеш пароля: "admin123" (в реальном приложении используйте bcrypt)
+                localStorage.setItem('adminCredentials', JSON.stringify({
+                    username: 'admin',
+                    password: '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918' // SHA-256 хеш
+                }));
+            }
+            
+            if (!localStorage.getItem('reviews')) {
+                localStorage.setItem('reviews', JSON.stringify([]));
+            }
+            
+            if (!localStorage.getItem('leads')) {
+                localStorage.setItem('leads', JSON.stringify([]));
+            }
+            
+            if (!localStorage.getItem('content')) {
+                localStorage.setItem('content', JSON.stringify({
+                    heroTitle: "Подготовка к ЕГЭ, ОГЭ и олимпиадам по математике и информатике с результатом 90+ баллов",
+                    advantages: [
+                        "Авторские методики, разработанные на основе многолетнего опыта преподавания и анализа экзаменационных заданий.",
+                        "Гибкий график занятий в удобное для вас время, включая выходные и вечерние часы.",
+                        "Разбор реальных заданий ЕГЭ и ОГЭ последних лет с авторскими решениями.",
+                        "Онлайн и офлайн формат занятий с использованием современных технологий обучения.",
+                        "Персональный подход к каждому ученику и регулярный мониторинг прогресса."
+                    ],
+                    faq: [
+                        { question: "Как проходят занятия?", answer: "Занятия проходят индивидуально в удобном для вас формате: онлайн через Zoom/Skype или офлайн в нашем учебном центре. Каждое занятие длится 60-90 минут и включает разбор теории, решение практических задач и анализ ошибок." },
+                        { question: "Какие материалы используются?", answer: "Мы используем авторские методические материалы, официальные сборники ФИПИ, задачи прошлых лет и дополнительные материалы для углубленного изучения сложных тем. Все материалы предоставляются бесплатно в электронном виде." }
+                    ]
+                }));
+            }
+        }
+    </script>
+    <style>
+        .login-form {
+            max-width: 400px;
+            margin: 100px auto;
+        }
+        .editor-content {
+            min-height: 200px;
+            border: 1px solid #d1d5db;
+            padding: 1rem;
+            border-radius: 0.375rem;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100 min-h-screen" onload="initDatabase(); checkAuth();">
+    <!-- Контейнер для формы входа -->
+    <div id="loginContainer" class="hidden">
+        <div class="login-form bg-white p-8 rounded-xl shadow-lg">
+            <div class="text-center mb-8">
+                <i class="fas fa-user-shield text-4xl text-blue-600 mb-4"></i>
+                <h1 class="text-2xl font-bold">Вход в админ-панель</h1>
+                <p class="text-gray-600 mt-2">Введите ваши учетные данные</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">Логин</label>
+                    <input type="text" id="username" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 mb-2">Пароль</label>
+                    <input type="password" id="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+                
+                <div id="loginError" class="text-red-500 text-sm hidden">
+                    Неверный логин или пароль
+                </div>
+                
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">
+                    Войти
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Админ-панель (скрыта по умолчанию) -->
+    <div id="adminPanel" class="hidden">
+        <div class="bg-gray-800 text-white p-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-user-shield text-xl mr-2"></i>
+                    <span class="text-xl font-bold">Админ-панель ЕГЭМастер</span>
+                </div>
+                <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md">
+                    Выйти
+                </button>
+            </div>
+        </div>
+
+        <div class="container mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Сайдбар -->
+                <div class="md:col-span-1 bg-white rounded-lg shadow-md p-4">
+                    <nav>
+                        <ul class="space-y-2">
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md bg-blue-100 text-blue-700 font-medium" data-tab="reviews">
+                                    <i class="fas fa-comments mr-2"></i> Управление отзывами
+                                </button>
+                            </li>
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md hover:bg-gray-100" data-tab="content">
+                                    <i class="fas fa-edit mr-2"></i> Редактирование контента
+                                </button>
+                            </li>
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md hover:bg-gray-100" data-tab="applications">
+                                    <i class="fas fa-envelope mr-2"></i> Заявки от клиентов
+                                </button>
+                            </li>
+                            <li>
+                                <button class="admin-tab w-full text-left px-4 py-2 rounded-md hover:bg-gray-100" data-tab="settings">
+                                    <i class="fas fa-cog mr-2"></i> Настройки сайта
+                                </button>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Основной контент -->
+                <div class="md:col-span-3 space-y-6">
+                    <!-- Управление отзывами -->
+                    <div class="admin-tab-content bg-white rounded-lg shadow-md p-6" id="reviewsTab">
+                        <h2 class="text-2xl font-bold mb-6">Управление отзывами</h2>
+                        
+                        <!-- Форма добавления отзыва -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold mb-4">Добавить новый отзыв</h3>
+                            <form id="addReviewForm" class="space-y-4">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Имя ученика</label>
+                                    <input type="text" id="studentName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Дата отзыва</label>
+                                    <input type="date" id="reviewDate" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Текст отзыва</label>
+                                    <textarea id="reviewText" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Фото отзыва (скриншот)</label>
+                                    <div class="border-2 border-dashed border-gray-300 rounded-md p-4 text-center">
+                                        <input type="file" id="reviewImage" class="hidden" accept="image/*">
+                                        <label for="reviewImage" class="cursor-pointer">
+                                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                                            <p class="text-gray-500">Кликните для выбора файла</p>
+                                            <p class="text-sm text-gray-400 mt-1">Макс. размер: 2MB</p>
+                                        </label>
+                                    </div>
+                                    <div id="imagePreview" class="mt-2 hidden">
+                                        <img id="previewImg" class="max-w-xs rounded border">
+                                    </div>
+                                </div>
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md transition duration-300">
+                                    Добавить отзыв
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Существующие отзывы -->
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4">Отзывы на сайте</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="reviewsGrid">
+                                <!-- Отзывы загружаются динамически -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Остальные вкладки (content, applications, settings) остаются без изменений -->
+                    <!-- ... -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================ БАЗА ДАННЫХ ================ //
+        // Получение данных из localStorage
+        function getReviews() {
+            return JSON.parse(localStorage.getItem('reviews') || [];
+        }
+        
+        function getLeads() {
+            return JSON.parse(localStorage.getItem('leads') || [];
+        }
+        
+        function getContent() {
+            return JSON.parse(localStorage.getItem('content')) || {};
+        }
+        
+        function getAdminCredentials() {
+            return JSON.parse(localStorage.getItem('adminCredentials')) || {};
+        }
+        
+        // Сохранение данных в localStorage
+        function saveReviews(reviews) {
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+        }
+        
+        function saveLeads(leads) {
+            localStorage.setItem('leads', JSON.stringify(leads));
+        }
+        
+        function saveContent(content) {
+            localStorage.setItem('content', JSON.stringify(content));
+        }
+        
+        // ================ АВТОРИЗАЦИЯ ================ //
+        // Проверка авторизации
+        function checkAuth() {
+            const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+            const loginContainer = document.getElementById('loginContainer');
+            const adminPanel = document.getElementById('adminPanel');
+            
+            if (isAuthenticated) {
+                loginContainer.classList.add('hidden');
+                adminPanel.classList.remove('hidden');
+                loadAdminContent();
+            } else {
+                loginContainer.classList.remove('hidden');
+                adminPanel.classList.add('hidden');
+            }
+        }
+        
+        // Простая функция хеширования (в реальном приложении используйте bcrypt)
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+        
+        // Обработка входа
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorElement = document.getElementById('loginError');
+            
+            const credentials = getAdminCredentials();
+            const hashedPassword = await sha256(password);
+            
+            if (username === credentials.username && hashedPassword === credentials.password) {
+                sessionStorage.setItem('isAuthenticated', 'true');
+                checkAuth();
+            } else {
+                errorElement.classList.remove('hidden');
+                setTimeout(() => errorElement.classList.add('hidden'), 3000);
+            }
+        });
+        
+        // Выход из системы
+        function logout() {
+            sessionStorage.removeItem('isAuthenticated');
+            checkAuth();
+        }
+        
+        // ================ УПРАВЛЕНИЕ ОТЗЫВАМИ ================ //
+        // Загрузка отзывов в админ-панель
+        function loadReviews() {
+            const reviews = getReviews();
+            const reviewsGrid = document.getElementById('reviewsGrid');
+            reviewsGrid.innerHTML = '';
+            
+            if (reviews.length === 0) {
+                reviewsGrid.innerHTML = '<p class="text-gray-500 text-center py-8">Нет отзывов</p>';
+                return;
+            }
+            
+            reviews.forEach((review, index) => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'border rounded-lg overflow-hidden bg-white';
+                reviewCard.innerHTML = `
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h4 class="font-bold">${review.name}</h4>
+                                <p class="text-gray-500 text-sm">${review.date}</p>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button onclick="editReview(${index})" class="text-blue-600 hover:text-blue-800">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button onclick="deleteReview(${index})" class="text-red-600 hover:text-red-800">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-3">${review.text}</p>
+                        ${review.image ? `<img src="${review.image}" alt="Отзыв ${review.name}" class="w-full h-24 object-cover rounded">` : ''}
+                    </div>
+                `;
+                reviewsGrid.appendChild(reviewCard);
+            });
+        }
+        
+        // Добавление нового отзыва
+        document.getElementById('addReviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('studentName').value;
+            const date = document.getElementById('reviewDate').value;
+            const text = document.getElementById('reviewText').value;
+            const fileInput = document.getElementById('reviewImage');
+            
+            // Форматирование даты
+            const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            
+            const newReview = {
+                name: name,
+                date: formattedDate,
+                text: text,
+                image: null
+            };
+            
+            // Обработка изображения
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    newReview.image = e.target.result;
+                    
+                    // Сохранение в БД
+                    const reviews = getReviews();
+                    reviews.push(newReview);
+                    saveReviews(reviews);
+                    
+                    // Обновление интерфейса
+                    loadReviews();
+                    resetReviewForm();
+                    
+                    alert('Отзыв успешно добавлен!');
+                };
+                
+                reader.readAsDataURL(file);
+            } else {
+                // Сохранение без изображения
+                const reviews = getReviews();
+                reviews.push(newReview);
+                saveReviews(reviews);
+                
+                // Обновление интерфейса
+                loadReviews();
+                resetReviewForm();
+                
+                alert('Отзыв успешно добавлен!');
+            }
+        });
+        
+        // Превью изображения
+        document.getElementById('reviewImage').addEventListener('change', function(e) {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                const preview = document.getElementById('previewImg');
+                const previewContainer = document.getElementById('imagePreview');
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                }
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+        
+        // Редактирование отзыва
+        function editReview(index) {
+            const reviews = getReviews();
+            const review = reviews[index];
+            
+            // Заполнение формы данными
+            document.getElementById('studentName').value = review.name;
+            document.getElementById('reviewDate').value = new Date(review.date).toISOString().split('T')[0];
+            document.getElementById('reviewText').value = review.text;
+            
+            // Удаление старого отзыва
+            reviews.splice(index, 1);
+            saveReviews(reviews);
+            loadReviews();
+            
+            alert('Отзыв загружен для редактирования. Внесите изменения и нажмите "Добавить отзыв"');
+        }
+        
+        // Удаление отзыва
+        function deleteReview(index) {
+            if (confirm('Вы уверены, что хотите удалить этот отзыв?')) {
+                const reviews = getReviews();
+                reviews.splice(index, 1);
+                saveReviews(reviews);
+                loadReviews();
+                alert('Отзыв успешно удален!');
+            }
+        }
+        
+        // Сброс формы
+        function resetReviewForm() {
+            document.getElementById('addReviewForm').reset();
+            document.getElementById('imagePreview').classList.add('hidden');
+        }
+        
+        // ================ ЗАГРУЗКА КОНТЕНТА ================ //
+        function loadAdminContent() {
+            loadReviews();
+            // Здесь будут другие функции загрузки данных
+        }
+        
+        // Инициализация админ-панели
+        function initAdminPanel() {
+            // Инициализация вкладок
+            const adminTabs = document.querySelectorAll('.admin-tab');
+            adminTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Удаляем активный класс у всех вкладок
+                    adminTabs.forEach(t => t.classList.remove('bg-blue-100', 'text-blue-700'));
+                    // Добавляем активный класс текущей вкладке
+                    this.classList.add('bg-blue-100', 'text-blue-700');
+                    
+                    // Скрываем все содержимое вкладок
+                    document.querySelectorAll('.admin-tab-content').forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Показываем содержимое текущей вкладки
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}Tab`).classList.remove('hidden');
+                });
+            });
+        }
+        
+        // Инициализация после загрузки
+        window.addEventListener('DOMContentLoaded', function() {
+            if (sessionStorage.getItem('isAuthenticated') === 'true') {
+                initAdminPanel();
+            }
+        });
+    </script>
+</body>
+</html>
