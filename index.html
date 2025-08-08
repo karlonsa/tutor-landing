@@ -697,9 +697,44 @@
         // Contact form submission
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            this.reset();
+            
+            try {
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                
+                // Создаем объект заявки
+                const lead = {
+                    name: name,
+                    phone: phone,
+                    email: email || '',
+                    subject: subject || 'Не указан',
+                    date: new Date().toISOString(),
+                    status: 'new',
+                    id: Date.now()  // Добавляем уникальный ID
+                };
+                
+                // Получаем текущие заявки ИЛИ создаем пустой массив
+                let leads = JSON.parse(localStorage.getItem('leads')) || [];
+                
+                // Добавляем новую заявку
+                leads.push(lead);
+                
+                // Сохраняем обратно в localStorage
+                localStorage.setItem('leads', JSON.stringify(leads));
+                
+                // Для отладки: проверяем что сохранили
+                console.log('Сохраненные заявки:', JSON.parse(localStorage.getItem('leads')));
+                
+                alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+                this.reset();
+            } catch (error) {
+                console.error('Ошибка сохранения заявки:', error);
+                alert('Произошла ошибка. Пожалуйста, попробуйте еще раз.');
+            }
         });
+
 
         // Carousel navigation
         let currentSlide = 0;
