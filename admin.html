@@ -293,17 +293,13 @@
             getLeads() {
                 try {
                     const data = localStorage.getItem('leads');
-                    
-                    // Если данных нет - возвращаем пустой массив
-                    if (!data) return [];
-                    
-                    // Пробуем распарсить
-                    return JSON.parse(data);
+                    return data ? JSON.parse(data) : [];
                 } catch (e) {
                     console.error('Ошибка чтения заявок:', e);
                     return [];
                 }
             }
+
             
             saveLeads(leads) {
                 localStorage.setItem('leads', JSON.stringify(leads));
@@ -651,6 +647,7 @@
                     deleteLead(id);
                 });
             });
+            leads.sort((a, b) => new Date(b.date) - new Date(a.date));
         }
         
         function getStatusClass(status) {

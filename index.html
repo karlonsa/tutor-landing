@@ -704,28 +704,27 @@
                 const email = document.getElementById('email').value;
                 const subject = document.getElementById('subject').value;
                 
-                // Создаем объект заявки
-                const lead = {
+                // Получаем текущие заявки или создаем новый массив
+                let leads = JSON.parse(localStorage.getItem('leads'));
+                if (!Array.isArray(leads)) leads = [];
+                
+                // Создаем новую заявку
+                const newLead = {
+                    id: Date.now(),
                     name: name,
                     phone: phone,
-                    email: email || '',
-                    subject: subject || 'Не указан',
+                    email: email,
+                    subject: subject || 'Не указано',
                     date: new Date().toISOString(),
-                    status: 'new',
-                    id: Date.now()  // Добавляем уникальный ID
+                    status: 'new'
                 };
                 
-                // Получаем текущие заявки ИЛИ создаем пустой массив
-                let leads = JSON.parse(localStorage.getItem('leads')) || [];
-                
-                // Добавляем новую заявку
-                leads.push(lead);
-                
-                // Сохраняем обратно в localStorage
+                // Добавляем заявку и сохраняем
+                leads.push(newLead);
                 localStorage.setItem('leads', JSON.stringify(leads));
                 
-                // Для отладки: проверяем что сохранили
-                console.log('Сохраненные заявки:', JSON.parse(localStorage.getItem('leads')));
+                console.log('Заявка сохранена:', newLead);
+                console.log('Все заявки:', leads);
                 
                 alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
                 this.reset();
