@@ -291,7 +291,18 @@
             
             // Заявки
             getLeads() {
-                return JSON.parse(localStorage.getItem('leads'));
+                try {
+                    const data = localStorage.getItem('leads');
+                    
+                    // Если данных нет - возвращаем пустой массив
+                    if (!data) return [];
+                    
+                    // Пробуем распарсить
+                    return JSON.parse(data);
+                } catch (e) {
+                    console.error('Ошибка чтения заявок:', e);
+                    return [];
+                }
             }
             
             saveLeads(leads) {
@@ -804,6 +815,13 @@
                     // Показываем содержимое текущей вкладки
                     const tabId = this.getAttribute('data-tab');
                     document.getElementById(`${tabId}Tab`).classList.remove('hidden');
+
+                    // Обновляем данные при переключении вкладки
+                    if (tabId === 'reviews') {
+                        loadReviews();
+                    } else if (tabId === 'leads') {
+                        loadLeads(); // Добавлена перезагрузка заявок
+                    }
                 });
             });
         }
